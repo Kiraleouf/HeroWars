@@ -36,7 +36,7 @@ android {
         productFlavors {
             def FIELD_BASE_URL = "BASE_URL"
             local {
-                buildConfigField String.getSimpleName(), FIELD_BASE_URL, "\"http://localhost:8080/Herowars\""
+                buildConfigField String.getSimpleName(), FIELD_BASE_URL, "\"http://localhost:8080/Herowars/\""
             }
             prod {
                 buildConfigField String.getSimpleName(), FIELD_BASE_URL, "\"localhost:8080/Herowars\""
