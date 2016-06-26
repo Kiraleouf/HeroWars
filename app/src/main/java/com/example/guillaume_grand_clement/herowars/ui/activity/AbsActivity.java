@@ -5,6 +5,7 @@ import android.support.annotation.LayoutRes;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
 import com.example.guillaume_grand_clement.herowars.R;
 
 import butterknife.ButterKnife;
