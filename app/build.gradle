@@ -36,10 +36,10 @@ android {
         productFlavors {
             def FIELD_BASE_URL = "BASE_URL"
             local {
-                buildConfigField String.getSimpleName(), FIELD_BASE_URL, "\"https://wsperf.celio.com\""
+                buildConfigField String.getSimpleName(), FIELD_BASE_URL, "localhost:8080/Herowars"
             }
             prod {
-                buildConfigField String.getSimpleName(), FIELD_BASE_URL, "\"https://xxx.xxx.xxx.celio.com\""
+                buildConfigField String.getSimpleName(), FIELD_BASE_URL, "xxx.xxx.xxx.xxx:xxxx/Herowars"
             }
         }
     }

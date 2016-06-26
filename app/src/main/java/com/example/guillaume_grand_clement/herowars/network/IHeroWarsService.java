@@ -13,5 +13,4 @@ public interface IHeroWarsService {
 
     @GET("/service/sampleService")
     Observable<SamplePojo> sampleService();
-
 }
