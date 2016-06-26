@@ -10,7 +10,6 @@ import com.example.guillaume_grand_clement.herowars.R;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import io.realm.Realm;
 import rx.subscriptions.CompositeSubscription;
 
 public abstract class AbsActivity extends AppCompatActivity {
@@ -22,8 +21,7 @@ public abstract class AbsActivity extends AppCompatActivity {
     //region Fields ********************************************************************************
 
     protected CompositeSubscription mSubscriptions;
-    protected Realm mRealm;
-    protected boolean mIsOffline;
+//    protected Realm mRealm;
 
     private Snackbar mSnackbar;
     private boolean mIsBound;
@@ -54,7 +52,7 @@ public abstract class AbsActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        mRealm.close();
+//        mRealm.close();
         if (mIsBound) {
             mUnbinder.unbind();
         }
@@ -69,12 +67,15 @@ public abstract class AbsActivity extends AppCompatActivity {
         return findViewById(R.id.coordinator_layout);
     }
 
+    public Snackbar getSnackbar(){
+        return mSnackbar;
+    }
     //endregion
 
     //region Protected Methods *********************************************************************
 
     protected void setupData(Bundle savedInstanceState) {
-        mRealm = Realm.getDefaultInstance();
+//        mRealm = Realm.getDefaultInstance();
     }
 
     protected void setupUI(Bundle savedInstanceState, boolean bind) {

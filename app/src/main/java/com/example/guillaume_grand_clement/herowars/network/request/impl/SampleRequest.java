@@ -7,6 +7,7 @@ import com.example.guillaume_grand_clement.herowars.network.client.HeroWarsClien
 import com.example.guillaume_grand_clement.herowars.network.request.AbsRequest;
 
 import rx.Observable;
+import rx.functions.Action1;
 
 public class SampleRequest extends AbsRequest<SamplePojo> {
 

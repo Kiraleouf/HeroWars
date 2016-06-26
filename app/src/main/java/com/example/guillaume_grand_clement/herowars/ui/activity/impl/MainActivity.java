@@ -1,5 +1,7 @@
 package com.example.guillaume_grand_clement.herowars.ui.activity.impl;
 
+import android.util.Log;
+
 import com.example.guillaume_grand_clement.herowars.R;
 import com.example.guillaume_grand_clement.herowars.data.pojo.SamplePojo;
 import com.example.guillaume_grand_clement.herowars.network.request.impl.SampleRequest;
@@ -23,25 +25,17 @@ public class MainActivity extends AbsActivity {
                 .subscribeOn(Schedulers.io())
 
                 //Designe le thread sur lequel la réponse sera interprété
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<SamplePojo>() {
-            @Override
-            public void onCompleted() {
-                //TODO Lorsque la requete est terminée
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                //TODO Lorsque la requete retourne une erreur
-
-            }
-
-            @Override
-            public void onNext(SamplePojo samplePojo) {
-                //TODO Lorsque la requete retourne quelque chose
-
-            }
-        }));
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<SamplePojo>() {
+                    @Override
+                    public void call(SamplePojo samplePojo) {
+                        Log.e(getClass().getSimpleName(),"succes");
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        Log.e(getClass().getSimpleName(),throwable.getMessage());
+                    }
+                }));
     }
 
     @Override

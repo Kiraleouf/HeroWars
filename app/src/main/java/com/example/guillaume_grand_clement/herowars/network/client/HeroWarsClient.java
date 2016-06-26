@@ -37,7 +37,7 @@ public class HeroWarsClient {
     //region Public Methods ************************************************************************
 
     public static IHeroWarsService getService(final Context context) {
-        return HeroWarsClient.getService(context);
+        return getClient(context).mService;
     }
     //endregion
 
