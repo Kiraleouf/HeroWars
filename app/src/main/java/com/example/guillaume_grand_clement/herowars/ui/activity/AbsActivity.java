@@ -3,7 +3,6 @@ package com.example.guillaume_grand_clement.herowars.ui.activity;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -12,6 +11,8 @@ import com.example.guillaume_grand_clement.herowars.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import rx.subscriptions.CompositeSubscription;
 
 public abstract class AbsActivity extends AppCompatActivity {
@@ -23,13 +24,12 @@ public abstract class AbsActivity extends AppCompatActivity {
     //region Fields ********************************************************************************
 
     protected CompositeSubscription mSubscriptions;
-//    protected Realm mRealm;
+    protected Realm mRealm;
 
-    private Snackbar mSnackbar;
     private boolean mIsBound;
     private Unbinder mUnbinder;
 
-    @BindView(R.id.coordinator_layout)private CoordinatorLayout mCoordinatorLayout;
+    @BindView(R.id.coordinator_layout) CoordinatorLayout mCoordinatorLayout;
 
     //endregion
 
@@ -71,22 +71,19 @@ public abstract class AbsActivity extends AppCompatActivity {
         return findViewById(R.id.coordinator_layout);
     }
 
-    public Snackbar getSnackbar(){
-        return mSnackbar;
-    }
     //endregion
 
     //region Protected Methods *********************************************************************
 
     protected void setupData(Bundle savedInstanceState) {
-//        mRealm = Realm.getDefaultInstance();
+        mRealm.setDefaultConfiguration(new RealmConfiguration.Builder(this).build());
+        mRealm = Realm.getDefaultInstance();
     }
 
     protected void setupUI(Bundle savedInstanceState, boolean bind) {
         if (bind) {
             mUnbinder = ButterKnife.bind(this);
         }
-        mSnackbar = Snackbar.make(mCoordinatorLayout, "Welcome to AndroidHive", Snackbar.LENGTH_LONG);
         mIsBound = bind;
     }
 
@@ -96,13 +93,6 @@ public abstract class AbsActivity extends AppCompatActivity {
     //endregion
 
     //region Private Methods ***********************************************************************
-
-    private void dismissSnackbarIfNeeded() {
-        if (mSnackbar != null) {
-            mSnackbar.dismiss();
-            mSnackbar = null;
-        }
-    }
 
     //endregion
 
