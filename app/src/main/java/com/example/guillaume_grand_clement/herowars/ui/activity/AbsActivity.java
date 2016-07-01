@@ -2,12 +2,14 @@ package com.example.guillaume_grand_clement.herowars.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.guillaume_grand_clement.herowars.R;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import rx.subscriptions.CompositeSubscription;
@@ -26,6 +28,8 @@ public abstract class AbsActivity extends AppCompatActivity {
     private Snackbar mSnackbar;
     private boolean mIsBound;
     private Unbinder mUnbinder;
+
+    @BindView(R.id.coordinator_layout)private CoordinatorLayout mCoordinatorLayout;
 
     //endregion
 
@@ -82,6 +86,7 @@ public abstract class AbsActivity extends AppCompatActivity {
         if (bind) {
             mUnbinder = ButterKnife.bind(this);
         }
+        mSnackbar = Snackbar.make(mCoordinatorLayout, "Welcome to AndroidHive", Snackbar.LENGTH_LONG);
         mIsBound = bind;
     }
 

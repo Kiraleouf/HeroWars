@@ -1,6 +1,7 @@
 package com.example.guillaume_grand_clement.herowars.network.client;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.guillaume_grand_clement.herowars.BuildConfig;
 import com.example.guillaume_grand_clement.herowars.network.IHeroWarsService;
@@ -63,6 +64,7 @@ public class HeroWarsClient {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.createWithScheduler(Schedulers.io()))
                 .client(builder.build())
                 .build();
+        Log.d("URL",retrofit.baseUrl().toString());
         mService = retrofit.create(IHeroWarsService.class);
         mContext = context;
     }

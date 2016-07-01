@@ -1,6 +1,7 @@
 package com.example.guillaume_grand_clement.herowars.network.request.impl;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.guillaume_grand_clement.herowars.data.pojo.SamplePojo;
 import com.example.guillaume_grand_clement.herowars.network.client.HeroWarsClient;

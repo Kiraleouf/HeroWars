@@ -24,11 +24,12 @@ public class MainActivity extends AbsActivity {
                 //Designe le thread sur lequel la requete sera executé
                 .subscribeOn(Schedulers.io())
 
-                //Designe le thread sur lequel la réponse sera interprété
+                //Désigne le thread sur lequel la réponse sera interprété
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<SamplePojo>() {
                     @Override
                     public void call(SamplePojo samplePojo) {
                         Log.e(getClass().getSimpleName(),"succes");
+                        MainActivity.this.getSnackbar().setText(samplePojo.getName()).show();
                     }
                 }, new Action1<Throwable>() {
                     @Override
