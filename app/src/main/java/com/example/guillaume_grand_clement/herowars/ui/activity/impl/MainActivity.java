@@ -10,12 +10,8 @@ import com.example.guillaume_grand_clement.herowars.network.request.impl.SampleR
 import com.example.guillaume_grand_clement.herowars.ui.activity.AbsActivity;
 
 import io.realm.RealmResults;
-import rx.Observer;
-import rx.Scheduler;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 public class MainActivity extends AbsActivity {
 
@@ -24,12 +20,25 @@ public class MainActivity extends AbsActivity {
     protected void onResume() {
         super.onResume();
         mSubscriptions.add(new SampleRequest(this).asObservable()
-                .subscribeOn(Schedulers.io())
-
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<SamplePojo>() {
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<SamplePojo>() {
                     @Override
                     public void call(SamplePojo samplePojo) {
-                        Log.e(getClass().getSimpleName(), "succes");
+                        SampleQuery.copySample(samplePojo);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        throwable.printStackTrace();
+                    }
+                }));
+
+        mSubscriptions.add(SampleQuery.getSample().asObservable()
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<RealmResults<SamplePojo>>() {
+                    @Override
+                    public void call(RealmResults<SamplePojo> samplePojo) {
+                        Snackbar.make(MainActivity.this.getContentView(), samplePojo.get(0).getName(), Snackbar.LENGTH_LONG).show();
+                        Log.d(getClass().getSimpleName(), samplePojo.get(0).getName());
                     }
                 }, new Action1<Throwable>() {
                     @Override
@@ -37,18 +46,6 @@ public class MainActivity extends AbsActivity {
                         Log.e(getClass().getSimpleName(), throwable.getMessage());
                     }
                 }));
-        mSubscriptions.add(SampleQuery.getSample(mRealm).asObservable().filter(new Func1<RealmResults<SamplePojo>, Boolean>() {
-            @Override
-            public Boolean call(RealmResults<SamplePojo> samplePojos) {
-                return samplePojos.size() != 0;
-            }
-        }).subscribe(new Action1<RealmResults<SamplePojo>>() {
-            @Override
-            public void call(RealmResults<SamplePojo> samplePojo) {
-                Snackbar.make(MainActivity.this.getContentView(), samplePojo.get(0).getName(), Snackbar.LENGTH_LONG).show();
-                Log.d(getClass().getSimpleName(),samplePojo.get(0).getName());
-            }
-        }));
     }
 
     @Override

@@ -35,23 +35,7 @@ public class SampleRequest extends AbsRequest<SamplePojo> {
 
     @Override
     public Observable<SamplePojo> asObservable() {
-        return HeroWarsClient.getService(mContext).sampleService()
-                .asObservable()
-                .doOnNext(new Action1<SamplePojo>() {
-                    @Override
-                    public void call(final SamplePojo samplePojo) {
-                        final Realm realm = Realm.getDefaultInstance();
-                        realm.beginTransaction();
-                        realm.executeTransaction(new Realm.Transaction() {
-                            @Override
-                            public void execute(Realm realm) {
-                                realm.copyToRealm(samplePojo);
-                            }
-                        });
-                        realm.commitTransaction();
-                        realm.close();
-                    }
-                });
+        return HeroWarsClient.getService(mContext).sampleService().asObservable();
     }
     //endregion
 
