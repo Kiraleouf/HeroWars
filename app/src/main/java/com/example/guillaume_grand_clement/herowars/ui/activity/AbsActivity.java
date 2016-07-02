@@ -82,7 +82,7 @@ public abstract class AbsActivity extends AppCompatActivity {
 
     protected void setupUI(Bundle savedInstanceState, boolean bind) {
         if (bind) {
-            mUnbinder = ButterKnife.bind(this);
+            mUnbinder = ButterKnife.bind(this,this.getContentView());
         }
         mIsBound = bind;
     }

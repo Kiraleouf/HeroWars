@@ -7,11 +7,8 @@ import com.example.guillaume_grand_clement.herowars.data.pojo.SamplePojo;
 import com.example.guillaume_grand_clement.herowars.network.client.HeroWarsClient;
 import com.example.guillaume_grand_clement.herowars.network.request.AbsRequest;
 
-import io.realm.Realm;
+import hugo.weaving.DebugLog;
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 
 public class SampleRequest extends AbsRequest<SamplePojo> {
 

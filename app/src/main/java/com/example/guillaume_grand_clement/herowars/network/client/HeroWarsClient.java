@@ -10,6 +10,7 @@ import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import hugo.weaving.DebugLog;
 import io.realm.RealmObject;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -64,7 +65,6 @@ public class HeroWarsClient {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.createWithScheduler(Schedulers.io()))
                 .client(builder.build())
                 .build();
-        Log.d("URL",retrofit.baseUrl().toString());
         mService = retrofit.create(IHeroWarsService.class);
         mContext = context;
     }
