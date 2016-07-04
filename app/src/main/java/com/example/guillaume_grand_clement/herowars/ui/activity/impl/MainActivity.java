@@ -1,5 +1,7 @@
 package com.example.guillaume_grand_clement.herowars.ui.activity.impl;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 
 import com.example.guillaume_grand_clement.herowars.R;
@@ -17,6 +19,12 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 public class MainActivity extends AbsActivity {
+
+
+    public static void start(Context mContext) {
+        Intent login = new Intent(mContext, MainActivity.class);
+        mContext.startActivity(login);
+    }
 
     @Override
     protected void onResume() {
@@ -50,7 +58,10 @@ public class MainActivity extends AbsActivity {
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        throwable.printStackTrace();
+                        Snackbar.make(MainActivity.this.getContentView(),
+                            "Serveur HS !",
+                            Snackbar.LENGTH_LONG)
+                            .show();
                     }
                 }));
     }

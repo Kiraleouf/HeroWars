@@ -1,5 +1,6 @@
 package com.example.guillaume_grand_clement.herowars.ui.activity;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.design.widget.CoordinatorLayout;
@@ -8,11 +9,15 @@ import android.view.View;
 
 import com.example.guillaume_grand_clement.herowars.R;
 
+import java.util.concurrent.TimeUnit;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import rx.Completable;
+import rx.functions.Action0;
 import rx.subscriptions.CompositeSubscription;
 
 public abstract class AbsActivity extends AppCompatActivity {
@@ -27,6 +32,7 @@ public abstract class AbsActivity extends AppCompatActivity {
     protected Realm mRealm;
 
     private boolean mIsBound;
+    private Typeface mMainFont;
     private Unbinder mUnbinder;
 
     @BindView(R.id.coordinator_layout) CoordinatorLayout mCoordinatorLayout;
@@ -71,6 +77,9 @@ public abstract class AbsActivity extends AppCompatActivity {
         return findViewById(R.id.coordinator_layout);
     }
 
+    public Typeface getMainFont() {
+        return mMainFont;
+    }
     //endregion
 
     //region Protected Methods *********************************************************************
@@ -78,6 +87,7 @@ public abstract class AbsActivity extends AppCompatActivity {
     protected void setupData(Bundle savedInstanceState) {
         mRealm.setDefaultConfiguration(new RealmConfiguration.Builder(this).build());
         mRealm = Realm.getDefaultInstance();
+        mMainFont = Typeface.createFromAsset(getAssets(), "crusades.ttf");
     }
 
     protected void setupUI(Bundle savedInstanceState, boolean bind) {
