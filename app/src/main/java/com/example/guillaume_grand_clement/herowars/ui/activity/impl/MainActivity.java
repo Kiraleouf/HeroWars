@@ -11,7 +11,6 @@ import com.example.guillaume_grand_clement.herowars.network.request.impl.SampleR
 import com.example.guillaume_grand_clement.herowars.ui.activity.AbsActivity;
 
 import butterknife.OnClick;
-import hugo.weaving.DebugLog;
 import io.realm.RealmResults;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -20,10 +19,19 @@ import rx.schedulers.Schedulers;
 
 public class MainActivity extends AbsActivity {
 
+    //region Constants *****************************************************************************
 
-    public static void start(Context mContext) {
-        Intent login = new Intent(mContext, MainActivity.class);
-        mContext.startActivity(login);
+    //endregion
+
+    //region Fields ********************************************************************************
+
+    //endregion
+
+    //region Override Methods **********************************************************************
+
+    @Override
+    protected int getLayoutResId() {
+        return R.layout.activity_main;
     }
 
     @Override
@@ -59,15 +67,34 @@ public class MainActivity extends AbsActivity {
                     @Override
                     public void call(Throwable throwable) {
                         Snackbar.make(MainActivity.this.getContentView(),
-                            "Serveur HS !",
-                            Snackbar.LENGTH_LONG)
-                            .show();
+                                "Serveur HS !",
+                                Snackbar.LENGTH_LONG)
+                                .show();
                     }
                 }));
     }
 
-    @Override
-    protected int getLayoutResId() {
-        return R.layout.activity_main;
+    //endregion
+
+    //region Public Methods ************************************************************************
+
+    public static Intent buildIntent(Context context) {
+        return new Intent(context, MainActivity.class);
     }
+
+    //endregion
+
+    //region Protected Methods *********************************************************************
+
+    //endregion
+
+    //region Private Methods ***********************************************************************
+
+    //endregion
+
+    //region Inner Classes or Interfaces ***********************************************************
+
+    //endregion
+
+
 }

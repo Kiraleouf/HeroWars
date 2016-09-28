@@ -2,7 +2,7 @@ package com.example.guillaume_grand_clement.herowars.data.pojo;
 
 import io.realm.RealmObject;
 
-public class SamplePojo extends RealmObject{
+public class SamplePojo extends RealmObject {
     private String name;
 
     public String getName() {

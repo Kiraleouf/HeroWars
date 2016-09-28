@@ -9,15 +9,10 @@ import android.view.View;
 
 import com.example.guillaume_grand_clement.herowars.R;
 
-import java.util.concurrent.TimeUnit;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.realm.Realm;
-import io.realm.RealmConfiguration;
-import rx.Completable;
-import rx.functions.Action0;
 import rx.subscriptions.CompositeSubscription;
 
 public abstract class AbsActivity extends AppCompatActivity {
@@ -35,7 +30,8 @@ public abstract class AbsActivity extends AppCompatActivity {
     private Typeface mMainFont;
     private Unbinder mUnbinder;
 
-    @BindView(R.id.coordinator_layout) CoordinatorLayout mCoordinatorLayout;
+    @BindView(R.id.coordinator_layout)
+    CoordinatorLayout mCoordinatorLayout;
 
     //endregion
 
@@ -62,7 +58,7 @@ public abstract class AbsActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-//        mRealm.close();
+        mRealm.close();
         if (mIsBound) {
             mUnbinder.unbind();
         }
@@ -85,14 +81,13 @@ public abstract class AbsActivity extends AppCompatActivity {
     //region Protected Methods *********************************************************************
 
     protected void setupData(Bundle savedInstanceState) {
-        mRealm.setDefaultConfiguration(new RealmConfiguration.Builder(this).build());
         mRealm = Realm.getDefaultInstance();
         mMainFont = Typeface.createFromAsset(getAssets(), "crusades.ttf");
     }
 
     protected void setupUI(Bundle savedInstanceState, boolean bind) {
         if (bind) {
-            mUnbinder = ButterKnife.bind(this,this.getContentView());
+            mUnbinder = ButterKnife.bind(this, this.getContentView());
         }
         mIsBound = bind;
     }

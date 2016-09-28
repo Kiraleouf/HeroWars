@@ -1,8 +1,5 @@
 package com.example.guillaume_grand_clement.herowars.network.client;
 
-import android.content.Context;
-import android.util.Log;
-
 import com.example.guillaume_grand_clement.herowars.BuildConfig;
 import com.example.guillaume_grand_clement.herowars.network.IHeroWarsService;
 import com.google.gson.ExclusionStrategy;
@@ -10,7 +7,6 @@ import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import hugo.weaving.DebugLog;
 import io.realm.RealmObject;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -26,9 +22,8 @@ public class HeroWarsClient {
 
     //region Fields ********************************************************************************
 
-    public static HeroWarsClient sInstance;
+    private static HeroWarsClient sInstance;
     private IHeroWarsService mService;
-    private Context mContext;
 
     //endregion
 
@@ -38,9 +33,10 @@ public class HeroWarsClient {
 
     //region Public Methods ************************************************************************
 
-    public static IHeroWarsService getService(final Context context) {
-        return getClient(context).mService;
+    public static IHeroWarsService getService() {
+        return getClient().mService;
     }
+
     //endregion
 
     //region Protected Methods *********************************************************************
@@ -49,14 +45,14 @@ public class HeroWarsClient {
 
     //region Private Methods ***********************************************************************
 
-    private static HeroWarsClient getClient(final Context context) {
+    private static HeroWarsClient getClient() {
         if (sInstance == null) {
-            sInstance = new HeroWarsClient(context);
+            sInstance = new HeroWarsClient();
         }
         return sInstance;
     }
 
-    private HeroWarsClient(Context context) {
+    private HeroWarsClient() {
         final OkHttpClient.Builder builder = new OkHttpClient.Builder();
         final Gson gson = getGson();
         final Retrofit retrofit = new Retrofit.Builder()
@@ -66,7 +62,6 @@ public class HeroWarsClient {
                 .client(builder.build())
                 .build();
         mService = retrofit.create(IHeroWarsService.class);
-        mContext = context;
     }
 
     private Gson getGson() {

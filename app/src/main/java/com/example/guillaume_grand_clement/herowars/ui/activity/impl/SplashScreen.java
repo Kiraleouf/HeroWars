@@ -10,15 +10,13 @@ import android.widget.TextView;
 import com.example.guillaume_grand_clement.herowars.R;
 import com.example.guillaume_grand_clement.herowars.ui.activity.AbsActivity;
 
-import org.w3c.dom.Text;
-
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import rx.Completable;
 import rx.functions.Action0;
 
-public class SplashScreen extends AbsActivity{
+public class SplashScreen extends AbsActivity {
     //region Constants *****************************************************************************
 
     //endregion
@@ -35,18 +33,6 @@ public class SplashScreen extends AbsActivity{
     //endregion
 
     //region Override Methods **********************************************************************
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mSubscriptions.add(Completable.timer(5000, TimeUnit.MILLISECONDS).subscribe(new Action0() {
-            @Override
-            public void call() {
-                SplashScreen.this.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                MainActivity.start(SplashScreen.this);
-            }
-        }));
-    }
 
     @Override
     protected int getLayoutResId() {
@@ -72,6 +58,18 @@ public class SplashScreen extends AbsActivity{
         anim.setRepeatMode(Animation.REVERSE);
         anim.setRepeatCount(Animation.INFINITE);
         mTextViewLoading.startAnimation(anim);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mSubscriptions.add(Completable.timer(5000, TimeUnit.MILLISECONDS).subscribe(new Action0() {
+            @Override
+            public void call() {
+                SplashScreen.this.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                startActivity(MainActivity.buildIntent(getApplicationContext()));
+            }
+        }));
     }
 
     //endregion

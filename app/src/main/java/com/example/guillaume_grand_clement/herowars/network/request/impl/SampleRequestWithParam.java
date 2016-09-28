@@ -23,20 +23,21 @@ public class SampleRequestWithParam extends AbsRequest<SamplePojo> {
 
     //region Override Methods **********************************************************************
 
+    @Override
+    public Observable<SamplePojo> asObservable() {
+        return HeroWarsClient.getService().sampleServiceWithParam(mParam1, mParam2);
+    }
+
     //endregion
 
     //region Public Methods ************************************************************************
 
-    public SampleRequestWithParam(Context context,int param1,int param2) {
+    public SampleRequestWithParam(Context context, int param1, int param2) {
         super(context);
         mParam1 = param1;
         mParam2 = param2;
     }
 
-    @Override
-    public Observable<SamplePojo> asObservable() {
-        return HeroWarsClient.getService(mContext).sampleServiceWithParam(mParam1,mParam2);
-    }
     //endregion
 
     //region Protected Methods *********************************************************************
