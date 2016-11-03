@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.guillaume_grand_clement.herowars">
+          package="com.herowars.template">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <application
-        android:name=".HeroWarsApplication"
+        android:name="com.herowars.template.application.HeroWarsApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.impl.MainActivity">
+        <activity android:name="com.herowars.template.activity.impl.MainActivity">
         </activity>
 
-        <activity android:name=".ui.activity.impl.SplashScreen">
+        <activity android:name="com.herowars.template.activity.impl.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

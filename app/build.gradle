@@ -22,7 +22,7 @@ android {
     buildToolsVersion "24.0.1"
 
     defaultConfig {
-        applicationId "com.example.guillaume_grand_clement.herowars"
+        applicationId "com.herowars.template"
         minSdkVersion 19
         targetSdkVersion 24
         versionCode 1
@@ -37,15 +37,15 @@ android {
         }
 
         productFlavors {
-            def FIELD_BASE_URL = "BASE_URL"
+            def BASE_URL = "BASE_URL"
             local {
-                buildConfigField String.getSimpleName(), FIELD_BASE_URL, "\"http://10.0.2.2:8080/Herowars/\""
+                buildConfigField String.getSimpleName(), BASE_URL, "\"http://10.0.2.2:8080/Herowars/\""
             }
             prod {
-                buildConfigField String.getSimpleName(), FIELD_BASE_URL, "\"localhost:8080/Herowars\""
+                buildConfigField String.getSimpleName(), BASE_URL, "\"localhost:8080/Herowars\""
             }
             mock {
-                buildConfigField String.getSimpleName(), FIELD_BASE_URL, "www.perdu.com"
+                buildConfigField String.getSimpleName(), BASE_URL, "www.perdu.com"
             }
         }
     }
@@ -69,6 +69,6 @@ dependencies {
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
 
     // Dagger
-    compile 'com.google.dagger:dagger:2.4'
-    apt "com.google.dagger:dagger-compiler:2.4"
+    compile 'com.google.dagger:dagger:2.7'
+    apt "com.google.dagger:dagger-compiler:2.7"
 }
