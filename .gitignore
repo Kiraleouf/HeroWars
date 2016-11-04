@@ -1,3 +1,13 @@
+# IntelliJ IDEA
 .idea
+*.iml
+
+# Gradle
 .gradle
-/build
+build
+local.properties
+gradle.properties
+
+# Mac OS
+.DS_Store
+
