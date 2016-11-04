@@ -17,8 +17,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.realm.Realm;
-import okhttp3.OkHttpClient;
-import retrofit2.Retrofit;
 import rx.subscriptions.CompositeSubscription;
 
 public abstract class AbsActivity extends AppCompatActivity {
@@ -32,14 +30,7 @@ public abstract class AbsActivity extends AppCompatActivity {
     //region Fields ********************************************************************************
 
     @Inject
-    Retrofit mRetrofit;
-
-    @Inject
-    OkHttpClient mOkHttpClient;
-
-    @Inject
     protected HeroWarsModule.HeroWarsApiInterface mApi;
-
     protected CompositeSubscription mSubscriptions;
     protected Realm mRealm;
 
@@ -66,11 +57,6 @@ public abstract class AbsActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mSubscriptions = new CompositeSubscription();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
     }
 
     @Override

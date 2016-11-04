@@ -1,5 +1,6 @@
 package com.herowars.template.request.impl;
 
+import com.herowars.template.dagger.herowars.HeroWarsModule;
 import com.herowars.template.data.pojo.SamplePojo;
 import com.herowars.template.request.AbsRequest;
 
@@ -29,8 +30,8 @@ public class SampleRequestWithParam extends AbsRequest<SamplePojo> {
 
     //region Public Methods ************************************************************************
 
-    public SampleRequestWithParam(int param1, int param2) {
-        super();
+    public SampleRequestWithParam(HeroWarsModule.HeroWarsApiInterface api, int param1, int param2) {
+        super(api);
         mParam1 = param1;
         mParam2 = param2;
     }

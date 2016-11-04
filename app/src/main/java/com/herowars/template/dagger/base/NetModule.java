@@ -8,6 +8,8 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.concurrent.TimeUnit;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -66,6 +68,8 @@ public class NetModule {
     OkHttpClient provideOkHttpClient(Cache cache) {
         final OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.cache(cache);
+        builder.readTimeout(2000, TimeUnit.MILLISECONDS);
+        builder.writeTimeout(2000, TimeUnit.MILLISECONDS);
         return builder.build();
     }
 

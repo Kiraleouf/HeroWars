@@ -1,5 +1,6 @@
 package com.herowars.template.request.impl;
 
+import com.herowars.template.dagger.herowars.HeroWarsModule;
 import com.herowars.template.data.pojo.SamplePojo;
 import com.herowars.template.request.AbsRequest;
 
@@ -26,8 +27,8 @@ public class SampleRequest extends AbsRequest<SamplePojo> {
 
     //region Public Methods ************************************************************************
 
-    public SampleRequest() {
-        super();
+    public SampleRequest(HeroWarsModule.HeroWarsApiInterface api) {
+        super(api);
     }
 
     //endregion

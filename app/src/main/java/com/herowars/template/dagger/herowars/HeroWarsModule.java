@@ -23,7 +23,6 @@ public class HeroWarsModule {
     }
 
     @Provides
-    // needs to be consistent with the component scope
     @HeroWarsScope
     public HeroWarsApiInterface providesHeroWarsApiInterface(Retrofit retrofit) {
         return retrofit.create(HeroWarsApiInterface.class);

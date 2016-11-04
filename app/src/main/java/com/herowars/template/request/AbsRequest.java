@@ -22,7 +22,8 @@ public abstract class AbsRequest<T> {
 
     //region Public Methods ************************************************************************
 
-    public AbsRequest() {
+    public AbsRequest(HeroWarsModule.HeroWarsApiInterface api) {
+        this.mApi = api;
     }
 
     public abstract Observable<T> asObservable();

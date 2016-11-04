@@ -61,7 +61,7 @@ public class MainActivity extends AbsActivity {
 
     @OnClick(R.id.button)
     protected void onCallClick() {
-        mSubscriptions.add(new SampleRequest().asObservable()
+        mSubscriptions.add(new SampleRequest(mApi).asObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError(new Action1<Throwable>() {
