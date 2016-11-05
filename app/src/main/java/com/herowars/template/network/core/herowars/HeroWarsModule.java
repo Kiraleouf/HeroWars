@@ -1,6 +1,6 @@
-package com.herowars.template.dagger.herowars;
+package com.herowars.template.network.core.herowars;
 
-import com.herowars.template.data.pojo.SamplePojo;
+import com.herowars.template.network.pojo.SamplePojo;
 
 import dagger.Module;
 import dagger.Provides;

@@ -1,14 +1,15 @@
-package com.herowars.template.activity.impl;
+package com.herowars.template.ui.activity.impl;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
 
 import com.herowars.template.R;
-import com.herowars.template.activity.AbsActivity;
-import com.herowars.template.data.pojo.SamplePojo;
-import com.herowars.template.data.query.sample.SampleQuery;
-import com.herowars.template.request.impl.SampleRequest;
+import com.herowars.template.data.model.SampleModel;
+import com.herowars.template.ui.activity.AbsActivity;
+import com.herowars.template.network.pojo.SamplePojo;
+import com.herowars.template.data.query.SampleQuery;
+import com.herowars.template.network.request.impl.SampleRequest;
 import com.herowars.template.utils.LogUtils;
 
 import butterknife.OnClick;
@@ -38,16 +39,16 @@ public class MainActivity extends AbsActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mSubscriptions.add(SampleQuery.getSample(mRealm).filter(new Func1<RealmResults<SamplePojo>, Boolean>() {
+        mSubscriptions.add(SampleQuery.getSample(mRealm).filter(new Func1<RealmResults<SampleModel>, Boolean>() {
             @Override
-            public Boolean call(RealmResults<SamplePojo> samplePojos) {
-                return samplePojos.size() > 0;
+            public Boolean call(RealmResults<SampleModel> sampleModels) {
+                return sampleModels.size() > 0;
             }
-        }).doOnNext(new Action1<RealmResults<SamplePojo>>() {
+        }).doOnNext(new Action1<RealmResults<SampleModel>>() {
             @Override
-            public void call(RealmResults<SamplePojo> samplePojos) {
+            public void call(RealmResults<SampleModel> sampleModels) {
                 Snackbar.make(MainActivity.this.getContentView(),
-                        "Bienvenue " + samplePojos.get(0).getName() + " !",
+                        "Bienvenue " + sampleModels.first().getName() + " !",
                         Snackbar.LENGTH_LONG)
                         .show();
             }
@@ -72,7 +73,11 @@ public class MainActivity extends AbsActivity {
                 }).subscribe(new Action1<SamplePojo>() {
                     @Override
                     public void call(SamplePojo samplePojo) {
-                        SampleQuery.copySample(mRealm, samplePojo);
+
+                        SampleModel sampleModel = mRealm.createObject(SampleModel.class);
+                        sampleModel.setName(samplePojo.getName());
+
+                        SampleQuery.copySample(mRealm, sampleModel);
                     }
                 }, new Action1<Throwable>() {
                     @Override

@@ -1,6 +1,6 @@
-package com.herowars.template.request;
+package com.herowars.template.network.request;
 
-import com.herowars.template.dagger.herowars.HeroWarsModule;
+import com.herowars.template.network.core.herowars.HeroWarsModule;
 
 import rx.Observable;
 

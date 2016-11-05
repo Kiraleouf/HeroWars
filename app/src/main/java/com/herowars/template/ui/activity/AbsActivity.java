@@ -1,4 +1,4 @@
-package com.herowars.template.activity;
+package com.herowars.template.ui.activity;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.herowars.template.R;
 import com.herowars.template.application.HeroWarsApplication;
-import com.herowars.template.dagger.herowars.HeroWarsModule;
+import com.herowars.template.network.core.herowars.HeroWarsModule;
 
 import javax.inject.Inject;
 

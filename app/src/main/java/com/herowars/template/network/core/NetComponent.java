@@ -1,4 +1,6 @@
-package com.herowars.template.dagger.base;
+package com.herowars.template.network.core;
+
+import com.herowars.template.application.AppModule;
 
 import javax.inject.Singleton;
 

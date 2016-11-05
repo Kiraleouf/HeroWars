@@ -1,12 +1,12 @@
-package com.herowars.template.request.impl;
+package com.herowars.template.network.request.impl;
 
-import com.herowars.template.dagger.herowars.HeroWarsModule;
-import com.herowars.template.data.pojo.SamplePojo;
-import com.herowars.template.request.AbsRequest;
+import com.herowars.template.network.core.herowars.HeroWarsModule;
+import com.herowars.template.network.pojo.SamplePojo;
+import com.herowars.template.network.request.AbsRequest;
 
 import rx.Observable;
 
-public class SampleRequestWithParam extends AbsRequest<SamplePojo> {
+public class SampleRequest extends AbsRequest<SamplePojo> {
 
     //region Constants *****************************************************************************
 
@@ -14,26 +14,21 @@ public class SampleRequestWithParam extends AbsRequest<SamplePojo> {
 
     //region Fields ********************************************************************************
 
-    private final int mParam1;
-    private final int mParam2;
-
     //endregion
 
     //region Override Methods **********************************************************************
 
     @Override
     public Observable<SamplePojo> asObservable() {
-        return mApi.sampleServiceWithParam(mParam1, mParam2);
+        return mApi.sampleService().asObservable();
     }
 
     //endregion
 
     //region Public Methods ************************************************************************
 
-    public SampleRequestWithParam(HeroWarsModule.HeroWarsApiInterface api, int param1, int param2) {
+    public SampleRequest(HeroWarsModule.HeroWarsApiInterface api) {
         super(api);
-        mParam1 = param1;
-        mParam2 = param2;
     }
 
     //endregion

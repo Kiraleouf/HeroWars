@@ -1,8 +1,6 @@
-package com.herowars.template.data.pojo;
+package com.herowars.template.network.pojo;
 
-import io.realm.RealmObject;
-
-public class SamplePojo extends RealmObject {
+public class SamplePojo {
     private String name;
 
     public String getName() {
