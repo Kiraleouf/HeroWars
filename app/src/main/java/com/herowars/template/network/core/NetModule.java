@@ -1,4 +1,4 @@
-package com.herowars.template.dagger.base;
+package com.herowars.template.network.core;
 
 import android.app.Application;
 

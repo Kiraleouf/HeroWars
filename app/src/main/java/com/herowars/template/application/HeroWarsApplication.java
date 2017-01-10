@@ -3,13 +3,12 @@ package com.herowars.template.application;
 import android.app.Application;
 
 import com.herowars.template.BuildConfig;
-import com.herowars.template.dagger.base.AppModule;
-import com.herowars.template.dagger.base.DaggerNetComponent;
-import com.herowars.template.dagger.base.NetComponent;
-import com.herowars.template.dagger.base.NetModule;
-import com.herowars.template.dagger.herowars.DaggerHeroWarsComponent;
-import com.herowars.template.dagger.herowars.HeroWarsComponent;
-import com.herowars.template.dagger.herowars.HeroWarsModule;
+import com.herowars.template.network.core.DaggerNetComponent;
+import com.herowars.template.network.core.NetComponent;
+import com.herowars.template.network.core.NetModule;
+import com.herowars.template.network.core.herowars.DaggerHeroWarsComponent;
+import com.herowars.template.network.core.herowars.HeroWarsComponent;
+import com.herowars.template.network.core.herowars.HeroWarsModule;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;

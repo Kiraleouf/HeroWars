@@ -1,4 +1,4 @@
-package com.herowars.template.dagger.herowars;
+package com.herowars.template.network.core.herowars;
 
 import javax.inject.Scope;
 

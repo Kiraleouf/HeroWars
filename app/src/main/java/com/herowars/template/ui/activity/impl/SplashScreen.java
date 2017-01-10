@@ -1,4 +1,4 @@
-package com.herowars.template.activity.impl;
+package com.herowars.template.ui.activity.impl;
 
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.view.animation.Animation;
 import android.widget.TextView;
 
 import com.herowars.template.R;
-import com.herowars.template.activity.AbsActivity;
+import com.herowars.template.ui.activity.AbsActivity;
 
 import java.util.concurrent.TimeUnit;
 

@@ -1,7 +1,7 @@
-package com.herowars.template.dagger.herowars;
+package com.herowars.template.network.core.herowars;
 
-import com.herowars.template.activity.AbsActivity;
-import com.herowars.template.dagger.base.NetComponent;
+import com.herowars.template.network.core.NetComponent;
+import com.herowars.template.ui.activity.AbsActivity;
 
 import dagger.Component;
 
